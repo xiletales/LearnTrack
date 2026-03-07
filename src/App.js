@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from "recharts";
 
 // ─── Sample Data ───────────────────────────────────────────────────────────────
@@ -268,7 +268,7 @@ function LandingPage({ onLogin }) {
 // STUDENT DASHBOARD
 // ═══════════════════════════════════════════════════════════════════════════════
 function StudentDashboard({ student: initialStudent, onLogout }) {
-  const [student, setStudent] = useState(initialStudent);
+  const [student] = useState(initialStudent);
   const [activeTab, setActiveTab] = useState("dashboard");
   const [reflections, setReflections] = useState(student.reflections || []);
   const [newReflection, setNewReflection] = useState("");
