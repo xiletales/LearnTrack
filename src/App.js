@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from "recharts";
 
 // ── CSS Animations ─────────────────────────────────────────────────────────────
@@ -89,7 +89,7 @@ function AnimNum({ value, dur=900 }) {
     let s=0; const end=parseFloat(value), step=end/(dur/16);
     const t=setInterval(()=>{ s+=step; if(s>=end){setN(end);clearInterval(t);}else setN(parseFloat(s.toFixed(1))); },16);
     return ()=>clearInterval(t);
-  },[value]);
+  }, [value]);
   return <span>{n}</span>;
 }
 
@@ -97,7 +97,7 @@ function AnimNum({ value, dur=900 }) {
 function Ring({ value, max=100, size=76, color="#3b82f6" }) {
   const r=(size-10)/2, c=2*Math.PI*r;
   const [p, setP] = useState(0);
-  useEffect(()=>{ setTimeout(()=>setP(value/max),150); },[value]);
+  useEffect(()=>{ setTimeout(()=>setP(value/max),150); }, [value]);
   return (
     <svg width={size} height={size} style={{transform:"rotate(-90deg)"}}>
       <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#f0f4ff" strokeWidth={8}/>
@@ -110,7 +110,7 @@ function Ring({ value, max=100, size=76, color="#3b82f6" }) {
 
 // ── Toast ─────────────────────────────────────────────────────────────────────
 function Toast({ msg, onClose }) {
-  useEffect(()=>{ const t=setTimeout(onClose,3000); return()=>clearTimeout(t); },[]);
+  useEffect(()=>{ const t=setTimeout(onClose,3000); return()=>clearTimeout(t); }, []);
   return (
     <div className="notification" style={{position:"fixed",bottom:24,right:24,zIndex:999,background:"#fff",border:"1px solid #dcfce7",borderLeft:"4px solid #22c55e",borderRadius:14,padding:"14px 20px",display:"flex",alignItems:"center",gap:10,boxShadow:"0 8px 30px rgba(0,0,0,0.12)",minWidth:260}}>
       <span style={{fontSize:18}}>✅</span>
